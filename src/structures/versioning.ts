@@ -1,10 +1,10 @@
 import { ENDPOINT } from '../constants';
 
 export enum Platform {
-    Linux,
-    Windows,
-    Mac,
-    Unknown,
+    Linux = "linux",
+    Windows = "windows",
+    Mac = "mac",
+    Unknown = "unknown",
 }
 
 export function parsePlatform(plat: string): Platform {
