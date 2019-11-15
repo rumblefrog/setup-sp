@@ -11,7 +11,7 @@ outputs:
     description: 'Version of the SP compiler used'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'lib/index.js'
 branding:
   icon: 'command'  
   color: 'blue'
