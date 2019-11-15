@@ -1,15 +1,42 @@
 # Setup SourcePawn Action
 
-Install and configure toolchain path for sourcepawn compiler
+This action sets-up, cache and adds sourcemod scripting directory to the path
 
-## Inputs
+# Usage
 
-### `version`
+See [action.yml](https://github.com/rumblefrog/setup-sp/blob/master/action.yml)
 
-**Required** The version (range) of compiler to use.
+Basic:
 
-## Outputs
+```yaml
+steps:
+- uses: actions/checkout@v1
 
-### `version`
+- uses: actions/setup-sp@master
+  with:
+    version: '1.10.x'
 
-The version used and added to path (useful if using a range specifier)
+- run: spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
+```
+
+Matrix:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        sm-version: [ '1.10.x', '1.11.x', '1.11.6467']
+
+    name: SM version ${{ matrix.sm-version }}
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup SP
+      - uses: actions/setup-sp@master
+        with:
+          version: ${{ matrix.sm-version }}
+
+      - run: spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
+```
