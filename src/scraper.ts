@@ -4,9 +4,7 @@ import { default as axios } from 'axios';
 import to from 'await-to-js';
 
 export async function getVersions(): Promise<Versions> {
-    let res, err;
-
-    [ err, res ] = await to(axios.get(ENDPOINT));
+    const [ err, res ] = await to(axios.get(ENDPOINT));
 
     let versions: Versions = {};
 
@@ -39,9 +37,7 @@ export async function getVersions(): Promise<Versions> {
 }
 
 async function getBuilds(endpoint: string, versions: Versions, major: number, minor: number) {
-    let err, res;
-
-    [ err, res ] = await to(axios.get(endpoint));
+    const [ err, res ] = await to(axios.get(endpoint));
 
     if (err) {
         throw new Error(`Failed to pull builds from ${endpoint}`);
