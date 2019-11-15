@@ -1,0 +1,23 @@
+name: 'SP Compile'
+author: 'rumblefrog'
+description: 'Sourcepawn plugin compiler'
+inputs:
+  version:
+    description: 'Version of SP compiler'
+    required: true
+    default: '1.10.x'
+  file:
+    description: 'File to compile'
+    required: true
+  args: # You may use this to specify additional include paths, optimization, etc
+    description: 'Optional arguments to pass to the compiler'
+    required: false
+outputs:
+  version:
+    description: 'Version of the SP compiler used'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'command'  
+  color: 'blue'
