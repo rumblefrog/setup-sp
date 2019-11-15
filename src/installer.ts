@@ -1,5 +1,5 @@
 import { find as findCache, downloadTool, extractTar, extractZip, cacheDir } from '@actions/tool-cache';
-import { addPath } from '@actions/core';
+import { addPath, debug } from '@actions/core';
 import { maxSatisfying } from 'semver';
 import { join as pathJoin } from 'path';
 import { getVersions } from './scraper';
@@ -21,6 +21,8 @@ export async function installCompiler(range: string): Promise<string> {
         cache = await downloadCompiler(version);
     }
 
+    debug(`${cache} was added to path`);
+
     addPath(cache);
 
     return version;
@@ -28,6 +30,8 @@ export async function installCompiler(range: string): Promise<string> {
 
 async function downloadCompiler(version: string) {
     const spPath = await downloadTool(versions[version].toEndpoint());
+
+    debug(`${versions[version].toEndpoint()} was downloaded`);
     
     let extracted;
 
@@ -38,6 +42,8 @@ async function downloadCompiler(version: string) {
     }
 
     let spRoot = pathJoin(extracted, 'addons', 'sourcemod', 'scripting');
+
+    debug(`${spRoot} was added to tool cache`);
 
     return await cacheDir(spRoot, 'sourcepawn', version);
 }

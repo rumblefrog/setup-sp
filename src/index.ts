@@ -3,7 +3,7 @@ import { installCompiler } from './installer';
 
 async function run() {
     try {
-        const range = core.getInput('version');
+        const range = core.getInput('version', { required: true });
 
         let version = await installCompiler(range);
         core.setOutput('version', version);
