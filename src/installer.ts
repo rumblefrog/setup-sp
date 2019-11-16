@@ -1,5 +1,5 @@
 import { find as findCache, downloadTool, extractTar, extractZip, cacheDir } from '@actions/tool-cache';
-import { addPath } from '@actions/core';
+import { addPath, exportVariable } from '@actions/core';
 import { maxSatisfying } from 'semver';
 import { join as pathJoin } from 'path';
 import { getVersions } from './utils/scraper';
@@ -22,6 +22,7 @@ export async function installCompiler(range: string): Promise<string> {
     }
 
     addPath(cache);
+    exportVariable('includePath', pathJoin(cache, 'include'));
 
     return version;
 }
