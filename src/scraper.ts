@@ -1,10 +1,16 @@
 import { ENDPOINT, MM_REGEX, BUILD_REGEX } from './constants';
 import { Platform, Version, Versions, parsePlatform } from './structures/versioning';
-import { default as axios } from 'axios';
+import { HttpClient } from 'typed-rest-client/HttpClient';
 import to from 'await-to-js';
 
+const client = new HttpClient('setup-sp');
+
 export async function getVersions(): Promise<Versions> {
-    const [ err, res ] = await to(axios.get(ENDPOINT));
+    const [ err, res ] = await to(client.get(ENDPOINT));
+
+    if (err || !res || res.message.statusCode !== 200) {
+        throw new Error(`Failed to pull major minor versions from ${ENDPOINT}`);
+    }
 
     let versions: Versions = {};
 
@@ -12,9 +18,11 @@ export async function getVersions(): Promise<Versions> {
         return versions;
     }
 
+    const body = await res.readBody();
+
     let match, promises: Promise<void>[] = [];
 
-    while ((match = MM_REGEX.exec(res.data)) !== null) {
+    while ((match = MM_REGEX.exec(body)) !== null) {
         match[1] = match[1].replace('/', '');
 
         if (match[1].length <= 0) {
@@ -37,15 +45,17 @@ export async function getVersions(): Promise<Versions> {
 }
 
 async function getBuilds(endpoint: string, versions: Versions, major: number, minor: number) {
-    const [ err, res ] = await to(axios.get(endpoint));
+    const [ err, res ] = await to(client.get(endpoint));
 
-    if (err) {
+    if (err || !res || res.message.statusCode !== 200) {
         throw new Error(`Failed to pull builds from ${endpoint}`);
     }
 
+    const body = await res.readBody();
+
     let match;
 
-    while ((match = BUILD_REGEX.exec(res.data)) !== null) {
+    while ((match = BUILD_REGEX.exec(body)) !== null) {
         let platform: Platform = parsePlatform(match[2]);
 
         if (process.platform == 'win32' && platform != Platform.Windows) {
