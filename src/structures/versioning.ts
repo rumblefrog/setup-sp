@@ -1,4 +1,4 @@
-import { ENDPOINT } from '../constants';
+import { ENDPOINT } from '../utils/constants';
 
 export enum Platform {
     Linux = "linux",

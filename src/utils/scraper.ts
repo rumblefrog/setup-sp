@@ -1,5 +1,5 @@
 import { ENDPOINT, MM_REGEX, BUILD_REGEX } from './constants';
-import { Platform, Version, Versions, parsePlatform } from './structures/versioning';
+import { Platform, Version, Versions, parsePlatform } from '../structures/versioning';
 import { HttpClient } from 'typed-rest-client/HttpClient';
 import to from 'await-to-js';
 

@@ -2,7 +2,7 @@ import { find as findCache, downloadTool, extractTar, extractZip, cacheDir } fro
 import { addPath } from '@actions/core';
 import { maxSatisfying } from 'semver';
 import { join as pathJoin } from 'path';
-import { getVersions } from './scraper';
+import { getVersions } from './utils/scraper';
 
 let versions;
 
