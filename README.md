@@ -12,7 +12,7 @@ Basic:
 steps:
 - uses: actions/checkout@v1
 
-- uses: actions/setup-sp@master
+- uses: rumblefrog/setup-sp@master
   with:
     version: '1.10.x'
 
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Setup SP
-      - uses: actions/setup-sp@master
+        uses: rumblefrog/setup-sp@master
         with:
           version: ${{ matrix.sm-version }}
 
