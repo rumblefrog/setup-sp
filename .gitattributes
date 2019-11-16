@@ -1,2 +1,3 @@
 lib/* linguist-vendored
 node_modules/* linguist-vendored
+__tests__/* linguist-vendored

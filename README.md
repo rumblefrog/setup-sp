@@ -1,5 +1,7 @@
 # Setup SourcePawn Action
 
+![](https://github.com/rumblefrog/setup-sp/workflows/Main%20Workflow/badge.svg)
+
 This action sets-up, cache and adds sourcemod scripting directory to the path
 
 # Usage
@@ -27,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        sm-version: [ '1.10.x', '1.11.x', '1.11.6467']
+        sm-version: [ '1.10.x', '1.11.x', '1.11.6467', '>= 1.11.6478']
 
     name: SM version ${{ matrix.sm-version }}
     steps:

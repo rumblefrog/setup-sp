@@ -1,0 +1,26 @@
+name: Main Workflow
+
+on: [push]
+
+jobs:
+  run:
+    name: Run action
+    runs-on: ${{ matrix.operating-systems }}
+    strategy:
+      matrix:
+        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Setup SourcePawn Compiler
+      uses: rumblefrog/setup-sp@master
+      with:
+        version: "1.11.x"
+      
+      # For some reason, mac compiler doesn't use the include directory in which the compiler is in
+    - name: Verify compiler
+      run: |
+        which spcomp
+        echo $includePath
+        spcomp -i$includePath __tests__/compile.sp
