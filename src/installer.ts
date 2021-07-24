@@ -15,7 +15,7 @@ export async function installCompiler(range: string): Promise<string> {
         throw new Error(`Unable to find a version matching ${range}`);
     }
 
-    let cache = findCache('sourcepawn', version);
+    let cache = findCache('amxxpawn', version);
 
     if (!cache) {
         cache = await downloadCompiler(version);
@@ -38,7 +38,7 @@ async function downloadCompiler(version: string) {
         extracted = await extractZip(spPath);
     }
 
-    let spRoot = pathJoin(extracted, 'addons', 'sourcemod', 'scripting');
+    let spRoot = pathJoin(extracted, 'addons', 'amxmodx', 'scripting');
 
-    return await cacheDir(spRoot, 'sourcepawn', version);
+    return await cacheDir(spRoot, 'amxxpawn', version);
 }
