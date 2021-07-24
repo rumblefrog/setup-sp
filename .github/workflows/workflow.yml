@@ -11,16 +11,16 @@ jobs:
         operating-systems: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     
     - name: Setup AMXXPawn Compiler
       uses: wopox1337/setup-amxxpawn@master
       with:
-        version: "1.11.x"
+        version: "1.10.x"
       
       # For some reason, mac compiler doesn't use the include directory in which the compiler is in
     - name: Verify compiler
       run: |
-        which spcomp
+        which amxxpc
         echo $includePath
-        spcomp -i$includePath __tests__/compile.sp
+        spcomp -i$includePath __tests__/compile.sma
