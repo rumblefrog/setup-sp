@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    - name: Setup SourcePawn Compiler
-      uses: rumblefrog/setup-sp@master
+    - name: Setup AMXXPawn Compiler
+      uses: wopox1337/setup-amxxpawn@master
       with:
         version: "1.11.x"
       
