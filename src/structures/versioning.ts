@@ -44,6 +44,6 @@ export class Version {
     }
 
     public toEndpoint(): string {
-        return `${ENDPOINT}/${this.major}.${this.minor}/sourcemod-${this.major}.${this.minor}.0-git${this.build}-${this.platform}.${this.archiveExt}`;
+        return `${ENDPOINT}/${this.major}.${this.minor}/amxmodx-${this.major}.${this.minor}.0-git${this.build}-${this.platform}.${this.archiveExt}`;
     }
 }
