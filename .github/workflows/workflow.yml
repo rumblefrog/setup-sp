@@ -8,19 +8,28 @@ jobs:
     runs-on: ${{ matrix.operating-systems }}
     strategy:
       matrix:
-        operating-systems: [ubuntu-latest, windows-latest, macos-latest]
+        operating-systems: [
+            ubuntu-latest,
+            windows-latest,
+            # macos-latest
+          ]
+
+        amxmodx: ['1.9', '1.10']
 
     steps:
-    - uses: actions/checkout@v1
-    
-    - name: Setup SourcePawn Compiler
-      uses: rumblefrog/setup-sp@master
-      with:
-        version: "1.11.x"
-      
-      # For some reason, mac compiler doesn't use the include directory in which the compiler is in
-    - name: Verify compiler
-      run: |
-        which spcomp
-        echo $includePath
-        spcomp -i$includePath __tests__/compile.sp
+      - uses: actions/checkout@v2
+
+      - name: Setup AMXXPawn Compiler
+        uses: wopox1337/setup-amxxpawn@master
+        with:
+          version: ${{ matrix.amxmodx }}
+
+      - name: Add amxxpc library path
+        run: |
+          echo "LD_LIBRARY_PATH=$(dirname $(which amxxpc))" >> $GITHUB_ENV
+
+      # hlds not support macos x64
+      - name: Verify compiler
+        shell: bash
+        run: |
+          amxxpc __tests__/compile.sma -i"$includePath" -o__tests__/test.amxx

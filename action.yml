@@ -1,14 +1,14 @@
-name: 'Setup SourcePawn Compiler'
-author: 'rumblefrog'
-description: 'Install and setup SourcePawn compiler'
+name: 'Setup AMXXPawn Compiler'
+author: 'wopox1337'
+description: 'Install and setup AmxxPawn compiler'
 inputs:
   version:
-    description: 'Version of SP compiler'
+    description: 'Version of AMXXPawn compiler'
     required: true
     default: '1.10.x'
 outputs:
   version:
-    description: 'Version of the SP compiler used'
+    description: 'Version of the AMXXPawn compiler used'
 runs:
   using: 'node12'
   main: 'lib/index.js'
