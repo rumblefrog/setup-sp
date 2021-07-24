@@ -32,4 +32,4 @@ jobs:
       - name: Verify compiler
         shell: bash
         run: |
-          amxxpc __tests__/compile.sma -i"$includePath" -o__tests__/test.amxx
+          amxxpc __tests__/compile.sma -i"$includePath" -o"__tests__/test.amxx"

@@ -18,7 +18,7 @@ steps:
   with:
     version: '1.10.x'
 
-- run: amxxpc -iAnotherIncludeDirectory plugin.sma -o output/plugin.amxx
+- run: amxxpc -i"AnotherIncludeDirectory" plugin.sma -o"output/plugin.amxx"
 ```
 
 Matrix:
@@ -40,5 +40,8 @@ jobs:
         with:
           version: ${{ matrix.amxx-version }}
 
-      - run: amxxpc -iAnotherIncludeDirectory plugin.sma -o output/plugin.amxx
+      - run: amxxpc -i"AnotherIncludeDirectory" plugin.sma -o"output/plugin.amxx"
 ```
+
+# Credits
+Thanks to https://github.com/rumblefrog/setup-sp repository author for great example. This action based on this code.
