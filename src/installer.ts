@@ -23,6 +23,7 @@ export async function installCompiler(range: string): Promise<string> {
 
     addPath(cache);
     exportVariable('includePath', pathJoin(cache, 'include'));
+    exportVariable('LD_LIBRARY_PATH', cache);
 
     return version;
 }

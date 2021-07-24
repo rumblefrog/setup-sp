@@ -24,10 +24,6 @@ jobs:
         with:
           version: ${{ matrix.amxmodx }}
 
-      - name: Add amxxpc library path
-        run: |
-          echo "LD_LIBRARY_PATH=$(dirname $(which amxxpc))" >> $GITHUB_ENV
-
       # hlds not support macos x64
       - name: Verify compiler
         shell: bash
