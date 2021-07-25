@@ -14,9 +14,7 @@ Basic:
 steps:
 - uses: actions/checkout@v2
 
-- uses: wopox1337/setup-amxxpawn@master
-  with:
-    version: '1.10.x'
+- uses: wopox1337/setup-amxxpawn@v1
 
 - run: amxxpc -i"AnotherIncludeDirectory" plugin.sma -o"output/plugin.amxx"
 ```
@@ -36,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup AMXXPawn
-        uses: wopox1337/setup-amxxpawn@master
+        uses: wopox1337/setup-amxxpawn@v1
         with:
           version: ${{ matrix.amxx-version }}
 
