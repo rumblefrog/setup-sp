@@ -1,8 +1,9 @@
 # Setup AMXXPawn Action
 
-![](https://github.com/wopox1337/setup-amxxpawn/workflows/Main%20Workflow/badge.svg)
+[![Main workflow](https://github.com/wopox1337/setup-amxxpawn/actions/workflows/Test.yml/badge.svg)](https://github.com/wopox1337/setup-amxxpawn/actions/workflows/Test.yml)
 
-This action sets-up, cache and adds amxmodx scripting directory to the path
+This action sets up a [amxmodx](https://github.com/alliedmodders/amxmodx) environment for use in actions by:
+- optionally downloading and caching a version of amxmodx version and adding to `PATH`
 
 # Usage
 
