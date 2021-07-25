@@ -1,4 +1,4 @@
-name: Main Workflow
+name: Test
 
 on: [push]
 
@@ -27,5 +27,4 @@ jobs:
       # hlds not support macos x64
       - name: Verify compiler
         shell: bash
-        run: |
-          amxxpc __tests__/compile.sma -i"$includePath" -o"__tests__/test.amxx"
+        run: amxxpc __tests__/compile.sma -i"$includePath" -o"__tests__/test.amxx"
