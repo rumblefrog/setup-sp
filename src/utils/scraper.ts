@@ -2,6 +2,7 @@ import { ENDPOINT, MM_REGEX, BUILD_REGEX } from './constants';
 import { Platform, Version, Versions, parsePlatform } from '../structures/versioning';
 import { HttpClient } from 'typed-rest-client/HttpClient';
 import to from 'await-to-js';
+import * as core from '@actions/core';
 
 const client = new HttpClient('setup-sp');
 
@@ -9,7 +10,7 @@ export async function getVersions(): Promise<Versions> {
     const [ err, res ] = await to(client.get(ENDPOINT));
 
     if (err || !res || res.message.statusCode !== 200) {
-        console.log(err, res);
+        core.debug(`${err} AND ${res}`);
         throw new Error(`Failed to pull major minor versions from ${ENDPOINT}`);
     }
 
