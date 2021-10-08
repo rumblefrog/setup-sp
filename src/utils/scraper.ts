@@ -9,6 +9,7 @@ export async function getVersions(): Promise<Versions> {
     const [ err, res ] = await to(client.get(ENDPOINT));
 
     if (err || !res || res.message.statusCode !== 200) {
+        console.log(err, res);
         throw new Error(`Failed to pull major minor versions from ${ENDPOINT}`);
     }
 
