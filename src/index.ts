@@ -15,6 +15,7 @@ async function run() {
         const defineName = core.getInput('define-name', { required: false });
         if(versionFile !== "") {
             const versionFilePath = path.join(__dirname, versionFile);
+            console.log(versionFile, __dirname);
             if(!fs.existsSync(versionFilePath)) {
                 core.error("The path of the file containing the version is incorrect.");
                 return;
