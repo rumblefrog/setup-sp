@@ -6,9 +6,19 @@ inputs:
     description: 'Version of SP compiler'
     required: true
     default: '1.10.x'
+  version-file:
+    description: 'File to parse to get the version of the plugin'
+    required: false
+    default: ''
+  define-name:
+    description: 'Name of the define for the version of the plugin if you are using one'
+    required: false
+    default: ''
 outputs:
   version:
     description: 'Version of the SP compiler used'
+  version-file:
+    description: 'Version of the .sp file'
 runs:
   using: 'node12'
   main: 'lib/index.js'
