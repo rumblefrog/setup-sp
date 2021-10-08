@@ -32,7 +32,7 @@ export async function getVersions(): Promise<Versions> {
         let split = match[1].split('.');
 
         promises.push(getBuilds(
-            `${ENDPOINT}/${match[1]}`,
+            `${ENDPOINT}/${match[1]}/`,
             versions,
             split[0],
             split[1],
