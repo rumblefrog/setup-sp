@@ -8,7 +8,7 @@ This action sets-up, cache and adds sourcemod scripting directory to the path
 
 See [action.yml](https://github.com/rumblefrog/setup-sp/blob/master/action.yml)
 
-Basic:
+## Basic:
 
 ```yaml
 steps:
@@ -21,7 +21,7 @@ steps:
 - run: spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
 ```
 
-Matrix:
+## Matrix:
 
 ```yaml
 jobs:
@@ -42,3 +42,28 @@ jobs:
 
       - run: spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
 ```
+
+## Extract the version of the .sp file:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: SM version ${{ matrix.sm-version }}
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup SP
+        id: setup_sp
+        uses: rumblefrog/setup-sp@master
+        with:
+          version: '1.10.x'
+          version-file: ./plugin.sp
+
+      - run: |
+          spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
+          echo Plugin version ${{ steps.setup_sp.outputs.plugin-version }}
+```
+
+A complete workflow example can be found [here](https://github.com/Sarrus1/DiscordWebhookAPI/blob/master/.github/workflows/master.yml).
