@@ -14,13 +14,12 @@ async function run() {
         const versionFile = core.getInput('version-file', { required: false });
         const defineName = core.getInput('define-name', { required: false });
         if(versionFile !== "") {
-            const versionFilePath = path.join(__dirname, versionFile);
-            console.log(versionFile, __dirname);
-            if(!fs.existsSync(versionFilePath)) {
+            console.log(versionFile);
+            if(!fs.existsSync(versionFile)) {
                 core.error("The path of the file containing the version is incorrect.");
                 return;
             }
-            let parsedVersion = parseFile(versionFilePath, defineName);
+            let parsedVersion = parseFile(versionFile, defineName);
             core.setOutput('plugin-version', parsedVersion);
         }
     } catch (error: any) {
