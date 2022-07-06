@@ -15,6 +15,6 @@
     "webpack-cli": "^4.10.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack --config ./webpack.config.js"
+    "build": "./node_modules/.bin/webpack --config ./webpack.config.js"
   }
 }
