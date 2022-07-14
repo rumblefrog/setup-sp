@@ -14,6 +14,10 @@ inputs:
     description: 'Name of the define for the version of the plugin if you are using one'
     required: false
     default: ''
+  no-spcomp-proxy:
+    description: 'Whether spcomp should not be proxied to fix relative include path'
+    required: false
+    default: 'false'
 outputs:
   version:
     description: 'Version of the SP compiler used'

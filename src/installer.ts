@@ -1,5 +1,5 @@
 import { find as findCache, downloadTool, extractTar, extractZip, cacheDir } from '@actions/tool-cache';
-import { addPath, exportVariable } from '@actions/core';
+import { addPath, exportVariable, getBooleanInput } from '@actions/core';
 import { maxSatisfying } from 'semver';
 import { existsSync } from 'fs';
 import { rename, writeFile } from 'fs/promises';
@@ -28,6 +28,10 @@ export async function installCompiler(range: string): Promise<string> {
     // Workaround for https://github.com/rumblefrog/setup-sp/issues/5
     // We use a proxy script to call the original spcomp64 and include the path to the compiler
     if (
+        !(
+            getBooleanInput('no-spcomp-proxy', { required: false })
+            || process.env.NO_SPCOMP_PROXY
+        ) &&
         process.platform == 'linux' && !existsSync(pathJoin(cache, 'spcomp64_original'))
     ) {
         await rename(pathJoin(cache, 'spcomp64'), pathJoin(cache, 'spcomp64_original'));
