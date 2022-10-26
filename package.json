@@ -6,6 +6,6 @@
     "@types/semver": "^7.3.12",
     "await-to-js": "^3.0.0",
     "semver": "^7.3.8",
-    "typed-rest-client": "^1.8.6"
+    "typed-rest-client": "^1.8.9"
   }
 }
