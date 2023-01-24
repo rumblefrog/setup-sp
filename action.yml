@@ -10,7 +10,7 @@ outputs:
   version:
     description: 'Version of the AMXXPawn compiler used'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'lib/index.js'
 branding:
   icon: 'command'  

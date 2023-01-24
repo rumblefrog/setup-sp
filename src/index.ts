@@ -8,7 +8,7 @@ async function run() {
         let version = await installCompiler(range);
         core.setOutput('version', version);
 
-    } catch (error) {
+    } catch (error: any) {
         core.setFailed(error.message);
     }
 }
