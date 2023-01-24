@@ -13,7 +13,7 @@ Basic:
 
 ```yaml
 steps:
-- uses: actions/checkout@v2
+- uses: actions/checkout@v3
 
 - uses: wopox1337/setup-amxxpawn@v1
 
@@ -32,7 +32,7 @@ jobs:
 
     name: AMXXPawn version ${{ matrix.amxx-version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup AMXXPawn
         uses: wopox1337/setup-amxxpawn@v1
