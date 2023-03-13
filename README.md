@@ -12,11 +12,11 @@ See [action.yml](https://github.com/rumblefrog/setup-sp/blob/master/action.yml)
 
 ```yaml
 steps:
-- uses: actions/checkout@v1
+- uses: actions/checkout@v3
 
 - uses: rumblefrog/setup-sp@master
   with:
-    version: '1.10.x'
+    version: '1.12.x'
 
 - run: spcomp -iAnotherIncludeDirectory plugin.sp -o output/plugin.smx
 ```
@@ -29,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        sm-version: [ '1.10.x', '1.11.x', '1.11.6467', '>= 1.11.6478']
+        sm-version: [ '1.11.x', '1.12.x', '1.11.6467', '>= 1.11.6478']
 
     name: SM version ${{ matrix.sm-version }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: Setup SP
         uses: rumblefrog/setup-sp@master
