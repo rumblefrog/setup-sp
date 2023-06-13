@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     
-    - name: Setup SourcePawn Compiler
+    - name: Setup AMXXPawn Compiler
       uses: ./
       with:
-        version: "1.12.x"
+        version: "1.10.x"
       
     - name: Verify compiler
       run: |
-        which spcomp
+        which amxxpc
         echo $includePath
         ls -l $scriptingPath
-        cat $(which spcomp)
-        spcomp __tests__/compile.sp
+        cat $(which amxxpc)
+        amxxpc __tests__/compile.sma

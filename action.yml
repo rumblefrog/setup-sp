@@ -1,9 +1,9 @@
-name: 'Setup SourcePawn Compiler'
+name: 'Setup AMXXPawn Compiler'
 author: 'rumblefrog'
-description: 'Install and setup SourcePawn compiler'
+description: 'Install and setup AMXXPawn compiler'
 inputs:
   version:
-    description: 'Version of SP compiler'
+    description: 'Version of AMXX compiler'
     required: true
     default: '1.10.x'
   version-file:
@@ -14,15 +14,15 @@ inputs:
     description: 'Name of the define for the version of the plugin if you are using one'
     required: false
     default: ''
-  no-spcomp-proxy:
-    description: 'Whether spcomp should not be proxied to fix relative include path'
+  no-amxxpc-proxy:
+    description: 'Whether amxxpc should not be proxied to fix relative include path'
     required: false
     default: 'false'
 outputs:
   version:
-    description: 'Version of the SP compiler used'
+    description: 'Version of the AMXX compiler used'
   version-file:
-    description: 'Version of the .sp file'
+    description: 'Version of the .sma file'
 runs:
   using: 'node16'
   main: 'lib/index.js'

@@ -3,7 +3,7 @@ import { Platform, Version, Versions, parsePlatform } from '../structures/versio
 import { HttpClient } from 'typed-rest-client/HttpClient';
 import to from 'await-to-js';
 
-const client = new HttpClient('setup-sp');
+const client = new HttpClient('setup-amxxpawn');
 
 export async function getVersions(): Promise<Versions> {
     const [ err, res ] = await to(client.get(ENDPOINT));
@@ -37,6 +37,7 @@ export async function getVersions(): Promise<Versions> {
             split[0],
             split[1],
         ));
+
     }
 
     await Promise.all(promises);
