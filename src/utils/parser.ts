@@ -2,7 +2,7 @@
 
 export function parseFile(file: string, defineName: string): string{
   if(defineName !== ""){
-      var regex = new RegExp(`\\s*\\#define\\s+${defineName}\\s+(?:\\"|\\')([\\d.]+)`);
+      var regex = new RegExp(/\s*\#define\s+/.source + defineName + /\s+(?:"|\')(.*)"/.source);
   }
   else{
       var regex = /\s*version\s*=\s*(?:\"|\')([\d.]+)/;
