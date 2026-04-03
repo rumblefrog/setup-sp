@@ -1,0 +1,13 @@
+/*! formdata-polyfill. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
+
+/*! ws. MIT License. Einar Otto Stangvik <einaros@gmail.com> */
+
+/**
+ * [js-md4]{@link https://github.com/emn178/js-md4}
+ *
+ * @namespace md4
+ * @version 0.3.2
+ * @author Yi-Cyuan Chen [emn178@gmail.com]
+ * @copyright Yi-Cyuan Chen 2015-2027
+ * @license MIT
+ */

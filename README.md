@@ -66,4 +66,15 @@ jobs:
           echo Plugin version ${{ steps.setup_sp.outputs.plugin-version }}
 ```
 
+## Using a GitHub token to avoid rate limiting:
+
+When fetching recent SourceMod builds (1.13.7305+), the action queries the GitHub releases API. To avoid rate limiting, pass a GitHub token:
+
+```yaml
+- uses: rumblefrog/setup-sp@master
+  with:
+    version: '1.13.x'
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
 A complete workflow example can be found [here](https://github.com/Sarrus1/DiscordWebhookAPI/blob/master/.github/workflows/master.yml).
