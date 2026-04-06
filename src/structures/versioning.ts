@@ -47,3 +47,16 @@ export class Version {
         return `${ENDPOINT}${this.major}.${this.minor}/sourcemod-${this.major}.${this.minor}.0-git${this.build}-${this.platform}.${this.archiveExt}`;
     }
 }
+
+export class GithubVersion extends Version {
+    private downloadUrl: string;
+
+    constructor(major: number, minor: number, build: number, platform: Platform, archiveExt: string, downloadUrl: string) {
+        super(major, minor, build, platform, archiveExt);
+        this.downloadUrl = downloadUrl;
+    }
+
+    public toEndpoint(): string {
+        return this.downloadUrl;
+    }
+}

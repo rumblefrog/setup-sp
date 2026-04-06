@@ -18,6 +18,10 @@ inputs:
     description: 'Whether spcomp should not be proxied to fix relative include path'
     required: false
     default: 'false'
+  github-token:
+    description: 'GitHub token for fetching SourceMod releases from GitHub API (to avoid rate limiting). Defaults to GITHUB_TOKEN environment variable.'
+    required: false
+    default: ''
 outputs:
   version:
     description: 'Version of the SP compiler used'
