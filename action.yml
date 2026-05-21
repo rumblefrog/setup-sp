@@ -28,7 +28,7 @@ outputs:
   version-file:
     description: 'Version of the .sp file'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'lib/index.js'
 branding:
   icon: 'command'  
