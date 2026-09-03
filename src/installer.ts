@@ -25,6 +25,8 @@ export async function installCompiler(range: string): Promise<string> {
         cache = await downloadCompiler(version);
     }
 
+    await useOldCompilerIfNeeded(cache, version);
+
     // Workaround for https://github.com/rumblefrog/setup-sp/issues/5
     // We use a proxy script to call the original spcomp64 and include the path to the compiler
     if (
@@ -51,6 +53,37 @@ export async function installCompiler(range: string): Promise<string> {
     exportVariable('includePath', pathJoin(cache, 'include'));
 
     return version;
+}
+
+async function useOldCompilerIfNeeded(cache: string, version: string): Promise<void> {
+    if (!isSourceMod113Build7451OrLater(version)) {
+        return;
+    }
+
+    await replaceCompiler(cache, 'spcomp', 'oldspcomp');
+    await replaceCompiler(cache, 'spcomp64', 'oldspcomp64');
+}
+
+async function replaceCompiler(cache: string, currentCompiler: string, oldCompiler: string): Promise<void> {
+    const oldCompilerPath = pathJoin(cache, oldCompiler);
+    const currentCompilerPath = pathJoin(cache, currentCompiler);
+    const sourcePawn2CompilerPath = pathJoin(cache, `${currentCompiler}_sourcepawn2`);
+
+    if (!existsSync(oldCompilerPath) || !existsSync(currentCompilerPath)) {
+        return;
+    }
+
+    if (!existsSync(sourcePawn2CompilerPath)) {
+        await rename(currentCompilerPath, sourcePawn2CompilerPath);
+    }
+
+    await rename(oldCompilerPath, currentCompilerPath);
+}
+
+function isSourceMod113Build7451OrLater(version: string): boolean {
+    const [major, minor, build] = version.split('.').map(Number);
+
+    return major === 1 && minor === 13 && build >= 7451;
 }
 
 async function downloadCompiler(version: string) {
