@@ -18,6 +18,10 @@ inputs:
     description: 'Whether spcomp should not be proxied to fix relative include path'
     required: false
     default: 'false'
+  use-old-spcomp:
+    description: 'Use the legacy oldspcomp compiler included with SourceMod 1.13.7451 and newer'
+    required: false
+    default: 'false'
   github-token:
     description: 'GitHub token for fetching SourceMod releases from GitHub API (to avoid rate limiting). Defaults to GITHUB_TOKEN environment variable.'
     required: false

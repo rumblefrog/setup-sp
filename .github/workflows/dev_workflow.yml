@@ -5,23 +5,51 @@ on:
     branches-ignore:
       - 'master'
 
+permissions:
+  contents: read
+
 jobs:
   run:
-    name: Run action
-    runs-on: ubuntu-latest
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: SourceMod 1.12 (Linux)
+            os: ubuntu-latest
+            sm-version: '1.12.x'
+            use-old-spcomp: false
+            source-file: __tests__/compile.sp
+          - name: SourcePawn 2 (Linux)
+            os: ubuntu-latest
+            sm-version: '1.13.7451'
+            use-old-spcomp: false
+            source-file: __tests__/sourcepawn2.sp
+          - name: SourcePawn 1 compatibility (Linux)
+            os: ubuntu-latest
+            sm-version: '1.13.7451'
+            use-old-spcomp: true
+            source-file: __tests__/sourcepawn1.sp
+          - name: SourcePawn 1 compatibility (Windows)
+            os: windows-latest
+            sm-version: '1.13.7451'
+            use-old-spcomp: true
+            source-file: __tests__/sourcepawn1.sp
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v7
     
     - name: Setup SourcePawn Compiler
       uses: ./
       with:
-        version: "1.12.x"
+        version: ${{ matrix.sm-version }}
+        use-old-spcomp: ${{ matrix.use-old-spcomp }}
+        github-token: ${{ github.token }}
       
-    - name: Verify compiler
-      run: |
-        which spcomp
-        echo $includePath
-        ls -l $scriptingPath
-        cat $(which spcomp)
-        spcomp __tests__/compile.sp
+    - name: Verify selected compiler
+      run: spcomp ${{ matrix.source-file }}
+
+    - name: Verify preserved SourcePawn 2 compiler
+      if: matrix.use-old-spcomp
+      run: spcomp64-sourcepawn2 __tests__/sourcepawn2.sp

@@ -66,6 +66,22 @@ jobs:
           echo Plugin version ${{ steps.setup_sp.outputs.plugin-version }}
 ```
 
+## Using the SourcePawn 1 compatibility compiler:
+
+SourceMod builds starting with `1.13.0.7451` bundle SourcePawn 2 as `spcomp`.
+Projects that still require the frozen SourcePawn 1 compiler, such as projects
+using `VFormat`, can opt into the bundled `oldspcomp` compiler:
+
+```yaml
+- uses: rumblefrog/setup-sp@master
+  with:
+    version: '1.13.x'
+    use-old-spcomp: true
+```
+
+The SourcePawn 2 executables remain available as `spcomp-sourcepawn2` and
+`spcomp64-sourcepawn2` when compatibility mode is enabled.
+
 ## Using a GitHub token to avoid rate limiting:
 
 When fetching recent SourceMod builds (1.13.7305+), the action queries the GitHub releases API. To avoid rate limiting, pass a GitHub token:
