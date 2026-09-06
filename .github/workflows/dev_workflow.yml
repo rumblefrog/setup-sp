@@ -52,4 +52,4 @@ jobs:
 
     - name: Verify preserved SourcePawn 2 compiler
       if: matrix.use-old-spcomp
-      run: spcomp64-sourcepawn2 __tests__/sourcepawn2.sp
+      run: spcomp64-sourcepawn2 "-i${{ env.includePath }}" __tests__/sourcepawn2.sp
